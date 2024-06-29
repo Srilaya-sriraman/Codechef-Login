@@ -5,5 +5,6 @@
 .rounded-x {
   @apply bg-white;
   @apply max-w-full;
-  border-radius: 34% 0% 0% 0%;
+  border-radius: 150px 0% 0% 0%;
 }
+

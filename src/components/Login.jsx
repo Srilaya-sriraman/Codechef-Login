@@ -9,6 +9,7 @@ const Login = ({ setView }) => {
   const [background, setBackground] = useState(window.innerWidth > 768 ? 'backgroundd.png' : 'backgroundmob.png');
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  
   function handlePassword(event) {
      let new_pass = event.target.value;
      setPassword(new_pass);
@@ -27,17 +28,20 @@ const Login = ({ setView }) => {
         setErrorMessage(""); 
      }
   }
+
   const [showPassword, setShowPassword] = useState(false);
-const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-};
-const [email, setEmail] = useState('');
-const [errorMessage2, setErrorMessage2] = useState("");
-const validateEmail = (email) => {
+  };
+
+  const [email, setEmail] = useState('');
+  const [errorMessage2, setErrorMessage2] = useState("");
+  const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
-};
-function handleEmail(event) {
+  };
+  
+  function handleEmail(event) {
     const new_email = event.target.value;
     setEmail(new_email);
     if (!validateEmail(new_email)) {
@@ -45,22 +49,23 @@ function handleEmail(event) {
     } else {
         setErrorMessage2('');
     }
-};
-const [showDetails, setShowDetails] = useState(false);
-const[errorMessage3, setErrorMessage3] = useState("");
-const handleClick = () => {
-    if(setShowDetails) {
-        setErrorMessage3("");
-    }
-    if (!email || !password ||errorMessage!="") {
+  }
+
+  const [showDetails, setShowDetails] = useState(false);
+  const [errorMessage3, setErrorMessage3] = useState("");
+  
+  const handleClick = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    if (!email || !password || errorMessage) {
         setErrorMessage3("Please fill all the fields!");
     } else if (!validateEmail(email)) {
         setErrorMessage3("");
-    } 
-    else {
+    } else {
         setShowDetails(true);
+        setErrorMessage3("");
     }
-};
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setBackground(window.innerWidth > 768 ? 'backgroundd.png' : 'backgroundmob.png');
@@ -81,7 +86,7 @@ const handleClick = () => {
           <img src={logo} alt="Logo" className="w-36 h-36" />
         </div>
         <h2 className="text-center text-2xl font-bold mb-6 text-blue-400">LOGIN</h2>
-        <form>
+        <form onSubmit={handleClick}>
           <div className="mb-4 relative">
             <label className="block text-gray-700">Email ID</label>
             <input type="email" placeholder="someone@example.com" className="w-full pl-10 pr-3 py-2 border rounded-lg border-black" value={email} onChange={handleEmail} autoComplete='email'/>
@@ -101,7 +106,7 @@ const handleClick = () => {
             </label>
             <a href="#" className="text-blue-500">Forgot Password?</a>
           </div>
-          <button type="submit" className="w-full bg-blue-400 text-white py-2 rounded-3xl font-bold" onClick={handleClick}>Log in</button>
+          <button type="submit" className="w-full bg-blue-400 text-white py-2 rounded-3xl font-bold">Log in</button>
           <div className="text-center mt-4">
             Don't have an account? <span className="text-blue-500 cursor-pointer" onClick={() => setView('signup')}>Sign up</span>
           </div>
@@ -109,8 +114,8 @@ const handleClick = () => {
           {showDetails && 
           <div className="text-center mt-4">
             <p className="text-lg mb-2 text-gray-700">{`Email: ${email}`}</p>
-        </div>
-            }   
+          </div>
+          }
         </form>
       </div>
     </div>
