@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom class for mobile clipping */
+.rounded-x {
+  @apply bg-white;
+  @apply max-w-full;
+  border-radius: 34% 0% 0% 0%;
+}
