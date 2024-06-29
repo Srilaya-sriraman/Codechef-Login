@@ -77,7 +77,8 @@ const[firstname,setFirstname]=useState("");
 const[lastname,setLastname]=useState("");
 const[errorMessage5,setErrorMessage5]=useState("");
 const [showDetails, setShowDetails] = useState(false);
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault();
         if(setShowDetails) {
             setErrorMessage5("");
         }
@@ -144,7 +145,7 @@ const [showDetails, setShowDetails] = useState(false);
             <img src={lockIcon} alt="Lock Icon" className="absolute top-11 transform -translate-y-1/2 left-3 w-5 h-5" />
             <div className='text-red-500'> {errorMessage3} </div>
           </div>
-          <button type="submit" className="w-full bg-blue-400 text-white py-2 rounded-3xl font-bold" onClick={handleClick}>Sign Up</button>
+          <button type="submit" className="w-full bg-blue-400 text-white py-2 rounded-3xl font-bold" onClick={() => handleClick}>Sign Up</button>
           <div className="text-center mt-4">
             Already have an account? <span className="text-blue-500 cursor-pointer" onClick={() => setView('login')}>Log in</span>
           </div>
