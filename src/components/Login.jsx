@@ -106,11 +106,11 @@ const handleClick = () => {
             Don't have an account? <span className="text-blue-500 cursor-pointer" onClick={() => setView('signup')}>Sign up</span>
           </div>
           <div className="text-center mt-4 text-red-500">{errorMessage3}</div>
-          {showDetails && (
+          {showDetails && 
           <div className="text-center mt-4">
             <p className="text-lg mb-2 text-gray-700">{`Email: ${email}`}</p>
         </div>
-            )}   
+            }   
         </form>
       </div>
     </div>
