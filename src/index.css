@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom class for mobile clipping */
 .rounded-x {
   @apply bg-white;
   @apply max-w-full;

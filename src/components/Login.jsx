@@ -48,8 +48,7 @@ function handleEmail(event) {
 };
 const [showDetails, setShowDetails] = useState(false);
 const[errorMessage3, setErrorMessage3] = useState("");
-const handleClick = (e) => {
-    e.preventDefault();
+const handleClick = () => {
     if(setShowDetails) {
         setErrorMessage3("");
     }
@@ -102,7 +101,7 @@ const handleClick = (e) => {
             </label>
             <a href="#" className="text-blue-500">Forgot Password?</a>
           </div>
-          <button type="submit" className="w-full bg-blue-400 text-white py-2 rounded-3xl font-bold" onClick={() => handleClick(e)}>Log in</button>
+          <button type="submit" className="w-full bg-blue-400 text-white py-2 rounded-3xl font-bold" onClick={handleClick}>Log in</button>
           <div className="text-center mt-4">
             Don't have an account? <span className="text-blue-500 cursor-pointer" onClick={() => setView('signup')}>Sign up</span>
           </div>
